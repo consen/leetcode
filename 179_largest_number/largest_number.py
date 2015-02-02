@@ -6,7 +6,7 @@ class Solution:
             first_num = self.getFirstNumber(num)
             ans += str(first_num)
             num.remove(first_num)
-        return str(int(ans))
+        return str(int(ans))        # str(int()) for [0, 0]
 
     def getFirstNumber(self, num):
         first_num = num[0]

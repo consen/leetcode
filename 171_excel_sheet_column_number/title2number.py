@@ -14,6 +14,7 @@ def main():
     print s.titleToNumber('Z')
     print s.titleToNumber('AA')
     print s.titleToNumber('AB')
+    print s.titleToNumber('ZZ')
 
 if __name__ == '__main__':
     main()

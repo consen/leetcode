@@ -15,21 +15,21 @@ class Solution:
             return ans
         else:
             ans += str(numerator / denominator) + '.'
-            numerator = numerator % denominator
+            numerator %= denominator
         # 计算小数部分
-        divisor = []
+        numerator_index = {}  # 除数产生的商在ans中的索引
         while numerator != 0:
             # 除数重复则出现循环
-            if numerator in divisor:
-                pos = ans.find('.')
-                ans = ans[0:pos+1+divisor.index(numerator)] + '(' + ans[pos+1+divisor.index(numerator):] + ')'
+            if numerator in numerator_index:
+                ans = ans[0:numerator_index[numerator]] + '(' + ans[numerator_index[numerator]:] + ')'
                 break
             else:
-                divisor.append(numerator)
+                numerator_index[numerator] = len(ans)
             # 不足则除数进10
             numerator *= 10
             ans += str(numerator / denominator)
-            numerator = numerator % denominator         # 余数作为新的除数
+            # 余数作为新的除数
+            numerator %= denominator
         return ans
 
 

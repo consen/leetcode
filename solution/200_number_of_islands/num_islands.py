@@ -9,9 +9,7 @@ class Solution:
         self.cols = len(grid[0])
         self.grid = []
         for i in range(0, self.rows):
-            row = []
-            for j in range(0, self.cols):
-                row.append(grid[i][j])
+            row = [c for c in grid[i]]
             self.grid.append(row)
         for i in range(0, self.rows):
             for j in range(0, self.cols):
@@ -24,15 +22,19 @@ class Solution:
         queue = [(i, j)]
         while queue:
             i, j = queue.pop(0)
-            self.grid[i][j] = '2'
+            self.grid[i][j] = '2'           # mark this point has been visted.
             if i-1 >= 0 and self.grid[i-1][j] == '1':
                 queue.append((i-1, j))
+                self.grid[i-1][j] = '2'     #@ avoiding adding this point to queue again.
             if i+1 < self.rows and self.grid[i+1][j] == '1':
                 queue.append((i+1, j))
+                self.grid[i+1][j] = '2'
             if j-1 >= 0 and self.grid[i][j-1] == '1':
                 queue.append((i, j-1))
+                self.grid[i][j-1] = '2'
             if j+1 < self.cols and self.grid[i][j+1] == '1':
                 queue.append((i, j+1))
+                self.grid[i][j+1] = '2'
 
 
 def main():
